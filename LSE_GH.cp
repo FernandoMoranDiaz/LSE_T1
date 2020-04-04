@@ -65,9 +65,55 @@ void LSE::InsertarF(int x)
 		help->Asignasig(helpx2);
 	}
 }
+void LSE::Imprimir()
+{
+	if(!Inicio)
+	cout<<"Lista Vacia";
+	else
+	{
+		Nodo *Covid=Inicio;
+		while(Covid!=NULL)
+		{
+			Covid->Imprimir();
+			Covid=Covid->Obtienesig();
+		}
+	}
+}
+Nodo* LSE::Buscar( int x)
+{
+    Nodo *AYUDANTE=Inicio;
+    if(Inicio)
+    {   
+	 while (AYUDANTE!=NULL)
+    {    
+		if (AYUDANTE->Obtienedato()==x)
+        return AYUDANTE;
+        AYUDANTE=AYUDANTE->Obtienesig();
+    }
+    }
+    return AYUDANTE;
+}
+void LSE::Borrar( int x)
+{      Nodo *AUX=Buscar(x);
+    if(AUX==NULL)       cout<<"DATO NO ENCONTRADO";
+    else
+    {    if(AUX==Inicio)           BorrarI();
+    else
+    {
+        if(AUX->Obtienesig()==NULL)    BorrarF();
+        else
+        {    Nodo *XL=Inicio;
+            while(XL->Obtienesig()!=AUX)
+                XL=XL->Obtienesig();
+            XL->Asignasig(AUX->Obtienesig());
+            AUX->Asignasig(NULL);
+            delete AUX;
+        }
+    }
+    }
+}
 
-
-
+	
 
 
 int main(int argc, const char * argv[])
