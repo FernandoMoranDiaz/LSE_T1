@@ -52,8 +52,19 @@ class LSE
 		Nodo *Buscar(int);
 		void Borrar(int);
 };
-
-
+void LSE::InsertarF(int x)
+{
+	if(Inicio==NULL)
+	Inicio=new Nodo(x);
+	else
+	{
+		Nodo *help=Inicio;
+		while(help->Obtienesig()!NULL)
+			help=help->Obtienesig();
+		Nodo *helpx2=new Nodo(x)
+		help->Asignasig(helpx2);
+	}
+}
 
 
 
